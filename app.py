@@ -7,13 +7,17 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    # variables that the html file needs to render the website
     result = ''
     poke1_img = poke2_img = ''
-    poke1 = poke2 = ''
+    poke1 = poke2 = '' 
     if request.method == 'POST':
+        # receiving input
         poke1 = request.form['poke1']
         poke2 = request.form['poke2']
+        # running our model
         result = make_prediction(poke1, poke2)
+        # the image files require lowercase for the file names
         poke1_img = poke1.strip().lower()
         poke2_img = poke2.strip().lower()
 
